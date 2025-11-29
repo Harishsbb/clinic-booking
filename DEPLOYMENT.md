@@ -2,20 +2,31 @@
 
 ## Quick Setup Steps
 
-### Step 1: Deploy Backend to Railway (Recommended)
+### Step 1: Deploy Backend to Railway
 
-1. Go to [railway.app](https://railway.app) and sign up
-2. New Project → Deploy from GitHub repo
-3. Select your `server` folder
-4. Add MySQL service (or connect external MySQL)
-5. Set environment variables:
-   - `DB_HOST` = your MySQL host
-   - `DB_USER` = your MySQL user  
-   - `DB_PASSWORD` = your MySQL password
-   - `DB_NAME` = `clinic_booking`
-   - `PORT` = `5000`
-   - `FRONTEND_URL` = `https://harish-ks-projects-091e87d3.vercel.app` (or your custom domain)
-6. Copy your Railway URL (e.g., `https://your-app.railway.app`)
+1.  **Create Service:**
+    *   Click **"+ Create"** > **"GitHub Repo"**.
+    *   Select your `clinic-booking` repo.
+    *   **Immediately click the new card** to configure it.
+
+2.  **Configure Build:**
+    *   Go to **Settings** > **Build**.
+    *   Set **Root Directory** to `/server`.
+    *   *This is critical because your backend is in a subfolder.*
+
+3.  **Configure Variables:**
+    *   Go to **Variables**.
+    *   Add the following (Railway will auto-fill the values if you use `${...}`):
+        *   `PORT` = `5000`
+        *   `DB_HOST` = `${MYSQLHOST}`
+        *   `DB_USER` = `${MYSQLUSER}`
+        *   `DB_PASSWORD` = `${MYSQLPASSWORD}`
+        *   `DB_NAME` = `${MYSQLDATABASE}`
+        *   `DB_PORT` = `${MYSQLPORT}`
+
+4.  **Deploy:**
+    *   The app should redeploy automatically. Wait for it to turn **Green**.
+    *   Copy the **Public Domain** (e.g., `web-production-1234.up.railway.app`). You will need this for the frontend.
 
 ### Step 2: Deploy Frontend to Vercel
 
